@@ -19,14 +19,15 @@ RUN git clone "git://git.code.sf.net/p/ats2-lang-contrib/code" ATS2-contrib
 
 # Setup Environment Variables
 RUN export GCC=gcc
-RUN export PATSHOME=${PWD}/ATS2
-RUN export PATSHOMECONTRIB=${PWD}/ATS2-Contrib
-RUN export PATH=${PATSHOME}/bin:${PATH}
+RUN export PATSHOME=/MyATS/ATS2
+RUN export PATSHOMECONTRIB=/MyATS/ATS2-Contrib
+RUN export PATH=/MyATS/ATS2/bin:${PATH}
+RUN echo $PATH
 
 # Store the Env Variables in the bashrc
 RUN echo "export PATSHOME=/MyATS/ATS2" >> ~/.bashrc
 RUN echo "export PATSHOMECONTRIB=/MyATS/ATS2-Contrib" >> ~/.bashrc
-RUN echo "export PATH=${PATSHOME}/bin:${PATH}" >> ~/.bashrc
+RUN echo "export PATH=/MyATS/ATS2/bin:${PATH}" >> ~/.bashrc
 
 # For testing
 RUN pwd

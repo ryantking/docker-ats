@@ -20,15 +20,18 @@ RUN export PATSHOMECONTRIB=${PWD}/ATS2-Contrib
 RUN export PATH=${PATSHOME}/bin:${PATH}
 
 # Store the Env Variables in the bashrc
-RUN echo "export PATSHOME=/MyATS/ATS2" >> ${HOME}/.bashrc
-RUN echo "export PATSHOMECONTRIB=/MyATS/ATS2-Contrib" >> ${HOME}/.bashrc
-RUN echo "export PATH=${PATSHOME}/bin:${PATH}" >> ${HOME}/.bashrc
+RUN echo "export PATSHOME=/MyATS/ATS2" >> ~/.bashrc
+RUN echo "export PATSHOMECONTRIB=/MyATS/ATS2-Contrib" >> ~/.bashrc
+RUN echo "export PATH=${PATSHOME}/bin:${PATH}" >> ~/.bashrc
 
 # Get the ATS2 and ATS2-Contrib
 RUN git clone "git://git.code.sf.net/p/ats2-lang/code" ATS2
 RUN git clone "git://git.code.sf.net/p/ats2-lang-contrib/code" ATS2-Postiats-contrib
 
 # For testing
+RUN pwd
+RUN ls
+RUN cat ~/.bashrc
 RUN . ~/.bashrc
 RUN echo ${PATH}
 

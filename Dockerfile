@@ -21,7 +21,7 @@ RUN git clone "git://git.code.sf.net/p/ats2-lang-contrib/code" ATS2-contrib
 RUN export GCC=gcc
 RUN export PATSHOME=/MyATS/ATS2
 RUN export PATSHOMECONTRIB=/MyATS/ATS2-Contrib
-RUN export PATH=/MyATS/ATS2/bin:${PATH}
+RUN export PATH=/MyATS/ATS2/bin:$PATH
 RUN echo $PATH
 
 # Store the Env Variables in the bashrc

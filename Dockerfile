@@ -29,7 +29,7 @@ RUN git clone "git://git.code.sf.net/p/ats2-lang/code" ATS2
 RUN git clone "git://git.code.sf.net/p/ats2-lang-contrib/code" ATS2-Postiats-contrib
 
 # For testing
-RUN source ${HOME}/.bashrc
+RUN . ~/.bashrc
 RUN echo ${PATH}
 
 RUN echo 'Welcome to RyanTKing/ats!'

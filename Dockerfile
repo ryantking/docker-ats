@@ -9,10 +9,27 @@ WORKDIR /MyATS
 RUN apt-get update
 RUN apt-get install -y gcc
 RUN apt-get install -y git
+RUN apt-get install -y wget
 RUN apt-get install -y build-essential
-RUN apt-get install -y libgmp-dev libgc-dev
+RUN apt-get install -y libgmp-dev libgc-dev libjson-c-dev
 
-#
+# Setup Environment Variables
+RUN export GCC=gcc
+RUN export PATSHOME=${PWD}/ATS2
+RUN export PATSHOMECONTRIB=${PWD}/ATS2-Contrib
+RUN export PATH=${PATSHOME}/bin:${PATH}
+
+# Store the Env Variables in the bashrc
+RUN echo "export PATSHOME=/MyATS/ATS2" >> ${HOME}/.bashrc
+RUN echo "export PATSHOMECONTRIB=/MyATS/ATS2-Contrib" >> ${HOME}/.bashrc
+RUN echo "export PATH=${PATSHOME}/bin:${PATH}" >> ${HOME}/.bashrc
+
+# Get the ATS2 and ATS2-Contrib
+RUN git clone "git://git.code.sf.net/p/ats2-lang/code" ATS2
+RUN git clone "git://git.code.sf.net/p/ats2-lang-contrib/code" ATS2-Postiats-contrib
+
+# For testing
+RUN source ${HOME}/.bashrc
+RUN echo ${PATH}
 
 RUN echo 'Welcome to RyanTKing/ats!'
-EXPOSE 80

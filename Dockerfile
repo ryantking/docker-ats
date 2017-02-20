@@ -1,4 +1,4 @@
-# ATS Version 0.3.2
+# ATS Dockerfile
 FROM ubuntu:16.04
 MAINTAINER Ryan King "hello@ryanking.com"
 
@@ -17,14 +17,15 @@ RUN git clone "git://git.code.sf.net/p/ats2-lang/code" ATS2
 RUN git clone "git://git.code.sf.net/p/ats2-lang-contrib/code" ATS2-contrib
 
 # Setup Environment Variables
-ENV GCC="gcc"
 ENV PATSHOME="/MyATS/ATS2"
 ENV PATSHOMECONTRIB="/MyATS/ATS2-Contrib"
 ENV PATH="/MyATS/ATS2/bin:${PATH}"
 
-# For testing
-RUN pwd
-RUN ls
-RUN echo $PATH
+# Build ATS
+RUN (cd ${PATSHOME} && ./configure && make all)
 
-RUN echo 'Welcome to RyanTKing/ats!'
+# Confirm that ATS is properly installed
+RUN which patscc
+RUN which patsopt
+
+# End of [Dockerfile]
